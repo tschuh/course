@@ -1,35 +1,36 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+use work.pkg.all;
 
 
 entity top is
 port (
   clk: in std_logic;
-  din: in std_logic_vector( 15 downto 0 );
-  out_valid: out std_logic;
-  out_data: out std_logic_vector( 15 downto 0 )
+  din: in t_word;
+  dout: out t_word
 );
 end;
-
 
 
 architecture rtl of top is
 
 
+signal word: t_word := nulll;
+
+
 begin
 
 
-process( clk ) is
+dout <= word;
+
+process ( clk ) is
 begin
 if rising_edge( clk ) then
 
-  --dout <= din;
+  word <= din;
 
 end if;
 end process;
-
-
 
 
 end;
